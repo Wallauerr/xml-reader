@@ -39,7 +39,7 @@ pip install pyinstaller
 4. Execute o comando para criar um arquivo `executável`:
 
 ```
-pyinstaller --onefile nome_do_script.py
+pyinstaller --onefile /src/nome_do_script.py
 ```
 
 5. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
