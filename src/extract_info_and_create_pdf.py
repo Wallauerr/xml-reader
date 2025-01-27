@@ -3,7 +3,6 @@ import chardet
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-# Função para extrair informações do XML e criar o PDF
 def extract_info_and_create_pdf(xml_file, pdf_file):
   # Detecta a codificação do arquivo XML
   with open(xml_file, "rb") as xml_content:
@@ -20,7 +19,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   # Define o namespace
   namespace = {"nfe": "http://www.portalfiscal.inf.br/nfe"}
 
-  # Extrair informações do emitente
+  # Extrair emitente
   emit_element = root.find(".//nfe:emit", namespaces=namespace)
   emit_info = {}
   if emit_element is not None:
@@ -36,7 +35,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
       "CEP": endereco_emit.find(".//nfe:CEP", namespaces=namespace).text,
     }
 
-  # Extrair informações do destinatário
+  # Extrair destinatário
   dest_element = root.find(".//nfe:dest", namespaces=namespace)
   dest_info = {}
   if dest_element is not None:
@@ -52,7 +51,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
       "CEP": endereco_dest.find(".//nfe:CEP", namespaces=namespace).text,
     }
 
-  # Extrair informações da transportadora
+  # Extrair transportadora
   transp_element = root.find(".//nfe:transporta", namespaces=namespace)
   transp_info = {}
   if transp_element is not None:
@@ -60,7 +59,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
     transp_info["xNome"] = transp_element.find(".//nfe:xNome", namespaces=namespace).text
     transp_info["endereco"] = transp_element.find(".//nfe:xEnder", namespaces=namespace).text
 
-  # Extrair informações de volumes
+  # Extrair volumes
   volume_element = root.find(".//nfe:vol", namespaces=namespace)
   vol_info = {}
   if volume_element is not None:
@@ -70,7 +69,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   c = canvas.Canvas(pdf_file, pagesize=letter)
   c.drawString(250, 750, f"NOME DA EMPRESA")
 
-  # Informações do emitente
+  # Emit
   c.drawString(100, 730, f"Emitente:")
   c.drawString(100, 710, f"CNPJ: {emit_info['CNPJ']}")
   c.drawString(100, 690, f"Nome: {emit_info['xNome']}")
@@ -79,7 +78,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   c.drawString(100, 630, f"Cidade: {emit_info['endereco']['xMun']} - {emit_info['endereco']['UF']}")
   c.drawString(100, 610, f"CEP: {emit_info['endereco']['CEP']}")
 
-  # Informações do destinatário
+  # Dest
   c.drawString(100, 590, f"Destinatário:")
   c.drawString(100, 570, f"CNPJ: {dest_info['CNPJ']}")
   c.drawString(100, 550, f"Nome: {dest_info['xNome']}")
@@ -88,13 +87,13 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   c.drawString(100, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}")
   c.drawString(100, 470, f"CEP: {dest_info['endereco']['CEP']}")
 
-  # Informações da transportadora
+  # Transportadora
   c.drawString(100, 450, f"Transportadora:")
   c.drawString(100, 430, f"CNPJ: {transp_info['CNPJ']}")
   c.drawString(100, 410, f"Nome: {transp_info['xNome']}")
   c.drawString(100, 390, f"Endereço: {transp_info['endereco']}")
 
-  # Informações de volumes
+  # Volumes
   c.drawString(100, 370, f"Volumes:")
   c.drawString(100, 350, f"Quantidade de Volumes: {vol_info['qVol']}")
 
