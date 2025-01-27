@@ -58,10 +58,10 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   if volume_element is not None:
     vol_info["qVol"] = volume_element.find(".//nfe:qVol", namespaces=namespace).text
 
-  # Função para centralizar texto
-  def draw_centered_string(c, x_center, y, text, font_size):
-    c.setFontSize(font_size)
-    text_width = c.stringWidth(text)
+  # Função para centralizar texto com a fonte especificada
+  def draw_centered_string(c, x_center, y, text, font_size, font_name='Helvetica'):
+    c.setFont(font_name, font_size)
+    text_width = c.stringWidth(text, font_name, font_size)
     x = x_center - (text_width / 2)
     c.drawString(x, y, text)
 
@@ -73,10 +73,13 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   center_x = page_width / 2
 
   # Número
-  draw_centered_string(c, center_x, 750, f"{nfe_info['numero']}", 16)
+  draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 20, 'Helvetica-Bold')
+
+  # Volumes
+  draw_centered_string(c, center_x, 690, f"Volumes {vol_info['qVol']}", 14, 'Helvetica-Bold') #TODO Fazer lógica para mostrar 1/1 ou 1/2, 2/2 Volumes ou volume se for 1/1
 
   # Emit
-  draw_centered_string(c, center_x, 690, f"Nome: {emit_info['xNome']}", 12)
+  draw_centered_string(c, center_x, 350, f"Emitente: {emit_info['xNome']}", 12)
 
   # Dest
   draw_centered_string(c, center_x, 590, "Destinatário:", 12)
@@ -89,8 +92,5 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   # Transportadora
   draw_centered_string(c, center_x, 450, "Transportadora:", 12)
   draw_centered_string(c, center_x, 410, f"Nome: {transp_info['xNome']}", 12)
-
-  # Volumes
-  draw_centered_string(c, center_x, 350, f"{vol_info['qVol']}", 12)
 
   c.save()
