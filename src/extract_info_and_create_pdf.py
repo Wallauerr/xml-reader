@@ -35,7 +35,6 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   dest_element = root.find(".//nfe:dest", namespaces=namespace)
   dest_info = {}
   if dest_element is not None:
-    dest_info["CNPJ"] = dest_element.find(".//nfe:CNPJ", namespaces=namespace).text
     dest_info["xNome"] = dest_element.find(".//nfe:xNome", namespaces=namespace).text
     endereco_dest = dest_element.find(".//nfe:enderDest", namespaces=namespace)
     dest_info["endereco"] = {
@@ -72,16 +71,13 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   page_width = c._pagesize[0]
   center_x = page_width / 2
 
-  draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 20, 'Helvetica-Bold')
-  draw_centered_string(c, center_x, 690, f"Volumes {vol_info['qVol']}", 14, 'Helvetica-Bold') #TODO Fazer lógica para mostrar 1/1 ou 1/2, 2/2 Volumes ou volume se for 1/1
-  draw_centered_string(c, center_x, 350, f"Emitente: {emit_info['xNome']}", 12)
-  draw_centered_string(c, center_x, 590, "Destinatário:", 12)
-  draw_centered_string(c, center_x, 570, f"CNPJ: {dest_info['CNPJ']}", 12)
-  draw_centered_string(c, center_x, 550, f"Nome: {dest_info['xNome']}", 12)
+  draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
+  draw_centered_string(c, center_x, 690, f"Volumes {vol_info['qVol']}", 24, 'Helvetica-Bold') #TODO Fazer lógica para mostrar 1/1 ou 1/2, 2/2 Volumes ou volume se for 1/1
+  draw_centered_string(c, center_x, 550, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
   draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
   draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
   draw_centered_string(c, center_x, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
-  draw_centered_string(c, center_x, 450, "Transportadora:", 12)
-  draw_centered_string(c, center_x, 410, f"Nome: {transp_info['xNome']}", 12)
+  draw_centered_string(c, center_x, 410, f"Remetente: {emit_info['xNome']}", 12)
+  draw_centered_string(c, center_x, 350, f"Transportadora: {transp_info['xNome']}", 12)
 
   c.save()
