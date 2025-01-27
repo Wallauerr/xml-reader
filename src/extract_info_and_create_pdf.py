@@ -58,39 +58,39 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   if volume_element is not None:
     vol_info["qVol"] = volume_element.find(".//nfe:qVol", namespaces=namespace).text
 
+  # Função para centralizar texto
+  def draw_centered_string(c, x_center, y, text, font_size):
+    c.setFontSize(font_size)
+    text_width = c.stringWidth(text)
+    x = x_center - (text_width / 2)
+    c.drawString(x, y, text)
+
   # Criar PDF com informações extraídas
   c = canvas.Canvas(pdf_file, pagesize=letter)
 
-  # Numero
-  c.setFontSize(16)
-  c.drawString(250, 750, f"{nfe_info['numero']}")
+  # Definir centro da página
+  page_width = c._pagesize[0]
+  center_x = page_width / 2
+
+  # Número
+  draw_centered_string(c, center_x, 750, f"{nfe_info['numero']}", 16)
 
   # Emit
-  c.setFontSize(12)
-  c.drawString(100, 690, f"Nome: {emit_info['xNome']}")
+  draw_centered_string(c, center_x, 690, f"Nome: {emit_info['xNome']}", 12)
 
   # Dest
-  c.setFontSize(12)
-  c.drawString(100, 590, f"Destinatário:")
-  c.setFontSize(12)
-  c.drawString(100, 570, f"CNPJ: {dest_info['CNPJ']}")
-  c.setFontSize(12)
-  c.drawString(100, 550, f"Nome: {dest_info['xNome']}")
-  c.setFontSize(12)
-  c.drawString(100, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}")
-  c.setFontSize(12)
-  c.drawString(100, 510, f"Bairro: {dest_info['endereco']['xBairro']}")
-  c.setFontSize(12)
-  c.drawString(100, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}")
+  draw_centered_string(c, center_x, 590, "Destinatário:", 12)
+  draw_centered_string(c, center_x, 570, f"CNPJ: {dest_info['CNPJ']}", 12)
+  draw_centered_string(c, center_x, 550, f"Nome: {dest_info['xNome']}", 12)
+  draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
+  draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
+  draw_centered_string(c, center_x, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
 
   # Transportadora
-  c.setFontSize(12)
-  c.drawString(100, 450, f"Transportadora:")
-  c.setFontSize(12)
-  c.drawString(100, 410, f"Nome: {transp_info['xNome']}")
+  draw_centered_string(c, center_x, 450, "Transportadora:", 12)
+  draw_centered_string(c, center_x, 410, f"Nome: {transp_info['xNome']}", 12)
 
   # Volumes
-  c.setFontSize(12)
-  c.drawString(100, 350, f"{vol_info['qVol']}")
+  draw_centered_string(c, center_x, 350, f"{vol_info['qVol']}", 12)
 
   c.save()
