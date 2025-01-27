@@ -4,7 +4,7 @@ import process_files
 
 # Configurar a janela principal
 root = tk.Tk()
-root.title("Processador de XML para PDF v4.0")
+root.title("Processador de XML para PDF v4.0") #TODO ajustar para procurar arquivos e não a pasta, e também se tiver mais arquivos que não sejam xml
 
 # Etiqueta e entrada para a pasta de entrada
 input_folder_label = tk.Label(root, text="Pasta de Entrada:")
