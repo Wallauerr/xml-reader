@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import filedialog
 import process_files
 
-
 # Configurar a janela principal
 root = tk.Tk()
 root.title("Processador de XML para PDF v4.0")
@@ -24,7 +23,7 @@ output_folder_button = tk.Button(root, text="Selecionar Pasta", command=lambda: 
 output_folder_button.pack(pady=10)
 
 # Botão para iniciar o processamento
-process_button = tk.Button(root, text="Processar", command=process_files)
+process_button = tk.Button(root, text="Processar", command=lambda: process_files.process_files(input_folder_entry, output_folder_entry))
 process_button.pack(pady=10)
 
 root.mainloop()

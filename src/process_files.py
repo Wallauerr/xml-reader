@@ -1,6 +1,6 @@
 import os
 from tkinter import messagebox
-import extract_info_and_create_pdf
+from extract_info_and_create_pdf import extract_info_and_create_pdf
 
 # Função para processar os arquivos XML na pasta selecionada
 def process_files(input_folder_entry, output_folder_entry):
