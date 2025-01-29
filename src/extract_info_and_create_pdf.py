@@ -4,19 +4,15 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 def extract_info_and_create_pdf(xml_file, pdf_file):
-  # Detecta a codificação do arquivo XML
   with open(xml_file, "rb") as xml_content:
     result = chardet.detect(xml_content.read())
   encoding = result["encoding"]
 
-  # Lê o arquivo XML com a codificação detectada
   with open(xml_file, "r", encoding=encoding) as xml_content:
     xml_data = xml_content.read()
 
-  # Parse do XML
   root = ET.fromstring(xml_data)
 
-  # Define o namespace
   namespace = {"nfe": "http://www.portalfiscal.inf.br/nfe"}
 
   # Extrair numero
