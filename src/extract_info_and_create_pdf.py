@@ -64,21 +64,23 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
 
   page_width = c._pagesize[0]
   center_x = page_width / 2
-
-  draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
   
   qVol = vol_info.get("qVol", 1)
   volume_text = "Volume" if qVol == 1 else "Volumes"
 
   for volume in range(1, qVol + 1):
-    volume_info = f"{volume}/{qVol}"
-    draw_centered_string(c, center_x, 690 - (volume * 20), f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
+    if volume > 1: 
+      c.showPage()
 
-  draw_centered_string(c, center_x, 550, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
-  draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
-  draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
-  draw_centered_string(c, center_x, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
-  draw_centered_string(c, center_x, 410, f"Remetente: {emit_info['xNome']}", 12)
-  draw_centered_string(c, center_x, 350, f"Transportadora: {transp_info['xNome']}", 12)
+    draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
+    volume_info = f"{volume}/{qVol}"
+    draw_centered_string(c, center_x, 690, f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
+
+    draw_centered_string(c, center_x, 550, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
+    draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
+    draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
+    draw_centered_string(c, center_x, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
+    draw_centered_string(c, center_x, 410, f"Remetente: {emit_info['xNome']}", 12)
+    draw_centered_string(c, center_x, 350, f"Transportadora: {transp_info['xNome']}", 12)
 
   c.save()
