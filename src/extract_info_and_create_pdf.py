@@ -53,7 +53,6 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   if volume_element is not None:
     vol_info["qVol"] = volume_element.find(".//nfe:qVol", namespaces=namespace).text
 
-  # Função para centralizar texto com a fonte especificada
   def draw_centered_string(c, x_center, y, text, font_size, font_name='Helvetica'):
     c.setFont(font_name, font_size)
     text_width = c.stringWidth(text, font_name, font_size)
