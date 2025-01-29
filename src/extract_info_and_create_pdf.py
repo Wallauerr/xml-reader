@@ -51,7 +51,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   volume_element = root.find(".//nfe:vol", namespaces=namespace)
   vol_info = {}
   if volume_element is not None:
-    vol_info["qVol"] = volume_element.find(".//nfe:qVol", namespaces=namespace).text
+    vol_info["qVol"] = int(volume_element.find(".//nfe:qVol", namespaces=namespace).text)
 
   def draw_centered_string(c, x_center, y, text, font_size, font_name='Helvetica'):
     c.setFont(font_name, font_size)
@@ -62,12 +62,18 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
   # Criar PDF com informações extraídas
   c = canvas.Canvas(pdf_file, pagesize=letter)
 
-  # Definir centro da página
   page_width = c._pagesize[0]
   center_x = page_width / 2
 
   draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
-  draw_centered_string(c, center_x, 690, f"Volumes {vol_info['qVol']}", 24, 'Helvetica-Bold') #TODO Fazer lógica para mostrar 1/1 ou 1/2, 2/2 Volumes ou volume se for 1/1
+  
+  qVol = vol_info.get("qVol", 1)
+  volume_text = "Volume" if qVol == 1 else "Volumes"
+
+  for volume in range(1, qVol + 1):
+    volume_info = f"{volume}/{qVol}"
+    draw_centered_string(c, center_x, 690 - (volume * 20), f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
+
   draw_centered_string(c, center_x, 550, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
   draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
   draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
