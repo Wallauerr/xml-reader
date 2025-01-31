@@ -10,7 +10,7 @@ def process_files(input_paths, output_folder_entry):
     return
 
   for input_path in input_paths:
-    if input_path.endswith(".xml"):
+    if os.path.isfile(input_path) and input_path.endswith(".xml"):
       xml_file = input_path
       pdf_file = os.path.join(output_folder, f"{os.path.splitext(os.path.basename(input_path))[0]}.pdf")
       extract_info_and_create_pdf(xml_file, pdf_file)
