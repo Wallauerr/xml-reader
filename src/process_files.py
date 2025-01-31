@@ -14,11 +14,5 @@ def process_files(input_paths, output_folder_entry):
       xml_file = input_path
       pdf_file = os.path.join(output_folder, f"{os.path.splitext(os.path.basename(input_path))[0]}.pdf")
       extract_info_and_create_pdf(xml_file, pdf_file)
-    elif os.path.isdir(input_path):
-      for filename in os.listdir(input_path):
-        if filename.endswith(".xml"):
-          xml_file = os.path.join(input_path, filename)
-          pdf_file = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}.pdf")
-          extract_info_and_create_pdf(xml_file, pdf_file)
 
   messagebox.showinfo("Concluído", "Processamento concluído. Os arquivos PDF foram criados com sucesso.")
