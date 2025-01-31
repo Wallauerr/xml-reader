@@ -59,7 +59,6 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
     x = x_center - (text_width / 2)
     c.drawString(x, y, text)
 
-  # Criar PDF com informações extraídas
   c = canvas.Canvas(pdf_file, pagesize=letter)
 
   page_width = c._pagesize[0]
