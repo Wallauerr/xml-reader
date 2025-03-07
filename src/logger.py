@@ -1,0 +1,29 @@
+import logging
+import sys
+
+def setup_logger(log_file='app.log', log_level=logging.ERROR, log_to_console=False):
+  """
+  Configura o sistema de logs.
+
+  :param log_file: Nome do arquivo de log.
+  :param log_level: Nível de log (ex: logging.ERROR, logging.INFO, logging.DEBUG).
+  :param log_to_console: Se True, exibe os logs no console também.
+  :return: Objeto logger configurado.
+  """
+  logger = logging.getLogger('app_logger')
+  logger.setLevel(log_level)
+
+  formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+  file_handler = logging.FileHandler(log_file)
+  file_handler.setFormatter(formatter)
+  logger.addHandler(file_handler)
+
+  if log_to_console:
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
+
+  return logger
+
+logger = setup_logger(log_to_console=True)
