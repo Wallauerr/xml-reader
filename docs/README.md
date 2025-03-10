@@ -27,7 +27,7 @@ git clone https://github.com/Wallauerr/xml-reader.git
 2. Acesse o diretório do projeto:
 
 ```
-cd xml-reader/src
+cd xml-reader
 ```
 
 3. Instale o `pyinstaller`:
@@ -39,7 +39,7 @@ pip install pyinstaller
 4. Execute o comando para criar um arquivo `executável`:
 
 ```
-pyinstaller --onefile --noconsole app.py
+pyinstaller app.spec
 ```
 
 5. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
