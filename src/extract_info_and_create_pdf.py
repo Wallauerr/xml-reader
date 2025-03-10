@@ -5,12 +5,6 @@ from reportlab.pdfgen import canvas
 from logger import logger
 
 def extract_info_and_create_pdf(xml_file, pdf_file):
-  """
-  Extrai informações de um arquivo XML e gera um PDF com essas informações.
-
-  :param xml_file: Caminho do arquivo XML.
-  :param pdf_file: Caminho do arquivo PDF a ser gerado.
-  """
   try:
     with open(xml_file, "rb") as xml_content:
       result = chardet.detect(xml_content.read())

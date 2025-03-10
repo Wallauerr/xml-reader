@@ -2,14 +2,6 @@ import logging
 import sys
 
 def setup_logger(log_file='app.log', log_level=logging.ERROR, log_to_console=False):
-  """
-  Configura o sistema de logs.
-
-  :param log_file: Nome do arquivo de log.
-  :param log_level: Nível de log (ex: logging.ERROR, logging.INFO, logging.DEBUG).
-  :param log_to_console: Se True, exibe os logs no console também.
-  :return: Objeto logger configurado.
-  """
   logger = logging.getLogger('app_logger')
   logger.setLevel(log_level)
 
