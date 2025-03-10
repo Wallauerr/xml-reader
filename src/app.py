@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from process_files import process_files
@@ -7,6 +8,9 @@ def main():
   try:
     root = tk.Tk()
     root.title("Gerador de Etiquetas")
+
+    icon_path = os.path.join(os.path.dirname(__file__), "assets", "favicon-sulmag_96x96.ico")
+    root.iconbitmap(icon_path)
 
     def select_input_paths():
       paths = filedialog.askopenfilenames(filetypes=[("XML files", "*.xml")])
