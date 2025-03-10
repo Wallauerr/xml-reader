@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import chardet
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, landscape 
 from reportlab.pdfgen import canvas
 from logger import logger
 
@@ -70,7 +70,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
       x = x_center - (text_width / 2)
       c.drawString(x, y, text)
 
-    c = canvas.Canvas(pdf_file, pagesize=letter)
+    c = canvas.Canvas(pdf_file, pagesize=landscape(letter))
 
     page_width = c._pagesize[0]
     center_x = page_width / 2
@@ -82,16 +82,16 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
       if volume > 1:
         c.showPage()
 
-      draw_centered_string(c, center_x, 750, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
+      draw_centered_string(c, center_x, 550, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
       volume_info = f"{volume}/{qVol}"
-      draw_centered_string(c, center_x, 690, f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
+      draw_centered_string(c, center_x, 490, f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
 
-      draw_centered_string(c, center_x, 550, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
-      draw_centered_string(c, center_x, 530, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
-      draw_centered_string(c, center_x, 510, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
-      draw_centered_string(c, center_x, 490, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
-      draw_centered_string(c, center_x, 410, f"Remetente: {emit_info['xNome']}", 12)
-      draw_centered_string(c, center_x, 350, f"Transportadora: {transp_info['xNome']}", 12)
+      draw_centered_string(c, center_x, 390, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
+      draw_centered_string(c, center_x, 370, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
+      draw_centered_string(c, center_x, 350, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
+      draw_centered_string(c, center_x, 330, f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}", 12)
+      draw_centered_string(c, center_x, 250, f"Remetente: {emit_info['xNome']}", 12)
+      draw_centered_string(c, center_x, 190, f"Transportadora: {transp_info['xNome']}", 12)
 
     c.save()
     logger.info(f"PDF gerado com sucesso: {pdf_file}")
