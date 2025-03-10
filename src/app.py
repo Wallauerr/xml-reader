@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from process_files import process_files
 from logger import logger
+from config_handler import load_config, save_config
 
 def main():
   try:
@@ -12,10 +13,28 @@ def main():
     icon_path = os.path.join(os.path.dirname(__file__), "assets", "favicon-sulmag_96x96.ico")
     root.iconbitmap(icon_path)
 
+    config = load_config()
+    last_input_folder = config.get("input_folder", "")
+    last_output_folder = config.get("output_folder", "")
+
     def select_input_paths():
-      paths = filedialog.askopenfilenames(filetypes=[("XML files", "*.xml")])
-      input_paths_entry.delete(0, tk.END)
-      input_paths_entry.insert(0, ";".join(paths))
+      paths = filedialog.askopenfilenames(
+        initialdir=last_input_folder,
+        filetypes=[("XML files", "*.xml")]
+      )
+      if paths:
+        input_paths_entry.delete(0, tk.END)
+        input_paths_entry.insert(0, ";".join(paths))
+        save_config(os.path.dirname(paths[0]), last_output_folder)
+
+    def select_output_folder():
+      folder = filedialog.askdirectory(
+        initialdir=last_output_folder
+      )
+      if folder:
+        output_folder_entry.delete(0, tk.END)
+        output_folder_entry.insert(0, folder)
+        save_config(last_input_folder, folder)
 
     input_paths_label = tk.Label(root, text="Arquivos de Entrada:")
     input_paths_label.pack(pady=10)
@@ -28,10 +47,19 @@ def main():
     output_folder_label.pack(pady=10)
     output_folder_entry = tk.Entry(root, width=50)
     output_folder_entry.pack()
-    output_folder_button = tk.Button(root, text="Selecionar Pasta", command=lambda: output_folder_entry.insert(0, filedialog.askdirectory()))
+    output_folder_button = tk.Button(root, text="Selecionar Pasta", command=select_output_folder)
     output_folder_button.pack(pady=10)
 
-    process_button = tk.Button(root, text="Processar", command=lambda: process_files(input_paths_entry.get().split(";"), output_folder_entry))
+    if last_input_folder:
+      input_paths_entry.insert(0, last_input_folder)
+    if last_output_folder:
+      output_folder_entry.insert(0, last_output_folder)
+
+    process_button = tk.Button(
+      root,
+      text="Processar",
+      command=lambda: process_files(input_paths_entry.get().split(";"), output_folder_entry)
+    )
     process_button.pack(pady=10)
 
     root.mainloop()
