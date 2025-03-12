@@ -90,6 +90,6 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
     c.save()
     logger.info(f"PDF gerado com sucesso: {pdf_file}")
 
-  except Exception as e:
-    logger.error(f"Erro ao processar o arquivo XML {xml_file}: {e}", exc_info=True)
+  except Exception as error:
+    logger.error(f"Erro ao processar o arquivo XML {xml_file}: {error}", exc_info=True)
     raise

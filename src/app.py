@@ -63,8 +63,8 @@ def main():
     process_button.pack(pady=10)
 
     root.mainloop()
-  except Exception as e:
-    logger.error(f"Erro ao executar o aplicativo: {e}", exc_info=True)
+  except Exception as error:
+    logger.error(f"Erro ao executar o aplicativo: {error}", exc_info=True)
     messagebox.showerror("Erro", f"Ocorreu um erro inesperado. Verifique o arquivo app.log para mais detalhes.")
 
 if __name__ == "__main__":
