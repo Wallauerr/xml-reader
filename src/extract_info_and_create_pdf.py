@@ -3,6 +3,7 @@ import chardet
 from reportlab.lib.pagesizes import letter, landscape 
 from reportlab.pdfgen import canvas
 from logger import logger
+from print_utils import print_pdf
 
 def extract_info_and_create_pdf(xml_file, pdf_file):
   try:
@@ -79,6 +80,7 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
       draw_centered_string(c, center_x, 550, f"NFE {nfe_info['numero']}", 24, 'Helvetica-Bold')
       volume_info = f"{volume}/{qVol}"
       draw_centered_string(c, center_x, 490, f"{volume_text} {volume_info}", 24, 'Helvetica-Bold')
+
       draw_centered_string(c, center_x, 390, f"Para: {dest_info['xNome']}", 18, 'Helvetica-Bold')
       draw_centered_string(c, center_x, 370, f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}", 12)
       draw_centered_string(c, center_x, 350, f"Bairro: {dest_info['endereco']['xBairro']}", 12)
@@ -88,6 +90,8 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
 
     c.save()
     logger.info(f"PDF gerado com sucesso: {pdf_file}")
+
+    print_pdf(pdf_file)
 
   except Exception as error:
     logger.error(f"Erro ao processar o arquivo XML {xml_file}: {error}", exc_info=True)
