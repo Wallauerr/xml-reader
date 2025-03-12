@@ -42,7 +42,13 @@ pip install pyinstaller
 pyinstaller app.spec
 ```
 
-5. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
+5. Se você continuar enfrentando erros relacionados ao comando pyinstaller, uma alternativa eficaz é executar o PyInstaller diretamente como um módulo do Python. Para isso, utilize o seguinte comando:
+
+```
+python -m PyInstaller app.spec
+```
+
+6. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
 
 ## Utilização
 
