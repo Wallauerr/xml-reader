@@ -1,21 +1,16 @@
 import os
-import subprocess
 from logger import logger
 
 def print_pdf(pdf_file):
   try:
-    if os.name == "nt":  # Windows
-      os.startfile(pdf_file, "print")
-      logger.info(f"Enviando {pdf_file} para impressão no Windows...")
-    elif os.name == "posix":  # Unix
-      try:
-        subprocess.run(["lp", pdf_file], check=True)
-        logger.info(f"Enviando {pdf_file} para impressão no macOS/Linux...")
-      except subprocess.CalledProcessError as error:
-        logger.error(f"Erro ao enviar o arquivo para impressão: {error}")
-      except FileNotFoundError:
-        logger.error("O comando 'lp' não foi encontrado. Certifique-se de que o sistema de impressão está configurado.")
+    if os.name == "nt":
+      if not os.path.exists(pdf_file):
+        logger.error(f"Arquivo não encontrado: {pdf_file}")
+        return
+      
+      os.startfile(pdf_file)
+      logger.info(f"Abrindo {pdf_file} no visualizador padrão...")
     else:
-      logger.warning("Sistema operacional não suportado para impressão automática.")
+      logger.warning("A funcionalidade de abertura automática é suportada apenas no Windows.")
   except Exception as error:
-    logger.error(f"Erro inesperado ao tentar imprimir: {error}")
+    logger.error(f"Erro inesperado ao tentar abrir o PDF: {error}")
