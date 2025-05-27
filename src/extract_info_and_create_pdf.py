@@ -97,14 +97,14 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
                 c.showPage()
 
             draw_centered_string(
-                c, center_x, 550, f"NFE {nfe_info['numero']}", 24, "Helvetica-Bold"
+                c, center_x, 550, f"NFE {nfe_info['numero']}", 20, "Helvetica-Bold"
             )
             volume_info = f"{volume}/{qVol}"
             draw_centered_string(
-                c, center_x, 490, f"{volume_text} {volume_info}", 24, "Helvetica-Bold"
+                c, center_x, 490, f"{volume_text} {volume_info}", 20, "Helvetica-Bold"
             )
             draw_centered_string(
-                c, center_x, 390, f"Para: {dest_info['xNome']}", 18, "Helvetica-Bold"
+                c, center_x, 390, f"Para: {dest_info['xNome']}", 16, "Helvetica-Bold"
             )
             draw_centered_string(
                 c,
