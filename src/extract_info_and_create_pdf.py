@@ -140,4 +140,3 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
             f"Erro ao processar o arquivo XML {xml_file}: {error}", exc_info=True
         )
         raise
-

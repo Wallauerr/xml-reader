@@ -15,4 +15,3 @@ def save_config(input_folder, output_folder):
     config = {"input_folder": input_folder, "output_folder": output_folder}
     with open(CONFIG_FILE, "w") as file:
         json.dump(config, file)
-

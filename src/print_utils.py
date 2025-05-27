@@ -17,4 +17,3 @@ def print_pdf(pdf_file):
             )
     except Exception as error:
         logger.error(f"Erro inesperado ao tentar abrir o PDF: {error}")
-

@@ -21,4 +21,3 @@ def setup_logger(log_file="app.log", log_level=logging.ERROR, log_to_console=Fal
 
 
 logger = setup_logger(log_to_console=True)
-
