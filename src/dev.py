@@ -15,7 +15,9 @@ class ReloadHandler(FileSystemEventHandler):
     def start_process(self):
         if self.process:
             self.process.terminate()
-            self.process.wait() 
+            self.process.wait()
+            
+        os.system('cls' if os.name == 'nt' else 'clear')   
         
         self.process = subprocess.Popen([sys.executable, self.script_path])
         print("\n✅ Aplicação reiniciada!")
