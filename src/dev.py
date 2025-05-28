@@ -16,15 +16,14 @@ class ReloadHandler(FileSystemEventHandler):
         if self.process:
             self.process.terminate()
             self.process.wait()
-            
-        os.system('cls' if os.name == 'nt' else 'clear')   
-        
         self.process = subprocess.Popen([sys.executable, self.script_path])
-        print("\n✅ Aplicação reiniciada!")
+        
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     def on_modified(self, event):
         if event.src_path.endswith(".py"):
             self.start_process()
+            print(f"\n🔁 Reiniciando devido a mudanças em: {event.src_path}")
 
 def main():
     event_handler = ReloadHandler("app.py")
