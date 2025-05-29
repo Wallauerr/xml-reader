@@ -1,7 +1,7 @@
 import json
 import os
 
-CONFIG_FILE = "config.json"
+CONFIG_FILE = "save_input_path.json"
 
 
 def load_config():
