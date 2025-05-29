@@ -4,3 +4,4 @@ __pycache__/
 app.log
 *.egg-info/
 venv/
+save_input_path.json
