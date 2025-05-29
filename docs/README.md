@@ -60,26 +60,31 @@ python -m PyInstaller app.spec
 ```
 pip install .
 ```
+3. Execute o comando para visualizar o app em tempo real de desenvolvimento(acesse `src` para executar):
 
-3. Crie uma nova branch com sua feature/correção:
+```
+python dev.py
+```
+
+4. Crie uma nova branch com sua feature/correção:
 
 ```
 git checkout -b nome-da-sua-branch
 ```
 
-4. Realize as alterações e commits:
+5. Realize as alterações e commits:
 
 ```
 git commit -m "tipoDeModificação: Descrição das suas alterações"
 ```
 
-5. Envie as alterações para o fork do repositório:
+6. Envie as alterações para o fork do repositório:
 
 ```
 git push origin nome-da-sua-branch
 ```
 
-6. Abra um Pull Request neste repositório (original).
+7. Abra um Pull Request neste repositório (original).
 
 ## Créditos
 
