@@ -97,37 +97,37 @@ def extract_info_and_create_pdf(xml_file, pdf_file):
                 c.showPage()
 
             draw_centered_string(
-                c, center_x, 430, f"NFE {nfe_info['numero']}", 20, "Helvetica-Bold"
+                c, center_x, 405, f"NFE {nfe_info['numero']}", 18, "Helvetica-Bold"
             )
             volume_info = f"{volume}/{qVol}"
             draw_centered_string(
-                c, center_x, 380, f"{volume_text} {volume_info}", 20, "Helvetica-Bold"
+                c, center_x, 380, f"{volume_text} {volume_info}", 18, "Helvetica-Bold"
             )
             draw_centered_string(
-                c, center_x, 330, f"Para: {dest_info['xNome']}", 16, "Helvetica-Bold"
+                c, center_x, 330, f"Para: {dest_info['xNome']}", 14, "Helvetica-Bold"
             )
             draw_centered_string(
                 c,
                 center_x,
                 310,
                 f"Endereço: {dest_info['endereco']['xLgr']}, {dest_info['endereco']['nro']}",
-                12,
+                10,
             )
             draw_centered_string(
-                c, center_x, 290, f"Bairro: {dest_info['endereco']['xBairro']}", 12
+                c, center_x, 290, f"Bairro: {dest_info['endereco']['xBairro']}", 10
             )
             draw_centered_string(
                 c,
                 center_x,
                 270,
                 f"Cidade: {dest_info['endereco']['xMun']} - {dest_info['endereco']['UF']}",
-                12,
+                10,
             )
             draw_centered_string(
-                c, center_x, 220, f"Remetente: {emit_info['xNome']}", 12
+                c, center_x, 220, f"Remetente: {emit_info['xNome']}", 10
             )
             draw_centered_string(
-                c, center_x, 170, f"Transportadora: {transp_info['xNome']}", 12
+                c, center_x, 200, f"Transportadora: {transp_info['xNome']}", 10
             )
 
         c.save()
