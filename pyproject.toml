@@ -1,0 +1,7 @@
+[project]
+name = "xml-reader"
+version = "0.1.0"
+description = "Generator of custom labels from XML files."
+authors = [{ name = "Vinícius Wallauer", email = "wallauer@protonmail.com" }]
+requires-python = ">=3.10"
+dependencies = ["watchdog>=3.0.0", "reportlab>=4.0.0", "chardet>=5.0.0"]
