@@ -21,34 +21,28 @@
 1. Clone o repositório para seu ambiente local:
 
 ```
-git clone https://github.com/Wallauerr/xml-reader.git
+git clone https://github.com/Wallauerr/xml-reader.git && cd xml-reader
 ```
 
-2. Acesse o diretório do projeto:
+2. Instale as dependências:
 
 ```
-cd xml-reader
+pip install -e ".[dev]"
 ```
 
-3. Instale o `pyinstaller`:
-
-```
-pip install pyinstaller
-```
-
-4. Execute o comando para criar um arquivo `executável`:
+3. Execute o comando para criar um arquivo `executável`:
 
 ```
 pyinstaller app.spec
 ```
 
-5. Se você continuar enfrentando erros relacionados ao comando pyinstaller, uma alternativa eficaz é executar o PyInstaller diretamente como um módulo do Python. Para isso, utilize o seguinte comando:
+4. Se você continuar enfrentando erros relacionados ao comando pyinstaller, uma alternativa eficaz é executar o PyInstaller diretamente como um módulo do Python. Para isso, utilize o seguinte comando:
 
 ```
 python -m PyInstaller app.spec
 ```
 
-6. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
+5. Navegue até o novo diretório chamado `dist` e em seguida execute o arquivo .exe que foi criado para rodar o app.
 
 ## Utilização
 
@@ -61,27 +55,31 @@ python -m PyInstaller app.spec
  Contribuições são sempre bem-vindas! Siga as etapas abaixo para contribuir com este projeto:
 
 1. Dê um fork neste repositório.
-2. Crie uma nova branch com sua feature/correção:
+2. Instale as dependencias do projeto:
+
+```
+pip install .
+```
+
+3. Crie uma nova branch com sua feature/correção:
 
 ```
 git checkout -b nome-da-sua-branch
 ```
 
-3. Realize as alterações e commits:
+4. Realize as alterações e commits:
 
 ```
 git commit -m "tipoDeModificação: Descrição das suas alterações"
 ```
 
-Tipos de modificação: feat, fix, etc...
-
-4. Envie as alterações para o fork do repositório:
+5. Envie as alterações para o fork do repositório:
 
 ```
 git push origin nome-da-sua-branch
 ```
 
-5. Abra um Pull Request neste repositório (original).
+6. Abra um Pull Request neste repositório (original).
 
 ## Créditos
 
