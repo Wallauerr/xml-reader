@@ -1,9 +1,11 @@
 import os
+import subprocess
 import sys
 import time
-import subprocess
-from watchdog.observers import Observer
+
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
+
 
 class ReloadHandler(FileSystemEventHandler):
     def __init__(self, script_path):
@@ -17,7 +19,7 @@ class ReloadHandler(FileSystemEventHandler):
             self.process.terminate()
             self.process.wait()
         self.process = subprocess.Popen([sys.executable, self.script_path])
-        
+
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def on_modified(self, event):

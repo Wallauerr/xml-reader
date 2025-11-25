@@ -1,7 +1,9 @@
 import xml.etree.ElementTree as ET
+
 import chardet
-from reportlab.lib.pagesizes import letter, landscape
+from reportlab.lib.pagesizes import landscape, letter
 from reportlab.pdfgen import canvas
+
 from logger import logger
 from print_utils import print_pdf
 
