@@ -12,7 +12,7 @@ class ReloadHandler(FileSystemEventHandler):
         self.script_path = script_path
         self.process = None
         self.start_process()
-        print("\n✅ Aplicação iniciada com sucesso!")
+        print("\n🚀 Aplicação iniciada com sucesso!")
 
     def start_process(self):
         if self.process:
@@ -28,9 +28,16 @@ class ReloadHandler(FileSystemEventHandler):
             print(f"\n🔁 Reiniciando devido a mudanças em: {event.src_path}")
 
 def main():
-    event_handler = ReloadHandler("app.py")
+    script_path = os.path.join("src", "app.py")
+
+    if not os.path.exists(script_path):
+        print(f"❌ Erro: Arquivo {script_path} não encontrado!")
+        sys.exit(1)
+
+    event_handler = ReloadHandler(script_path)
+
     observer = Observer()
-    observer.schedule(event_handler, path=".", recursive=True)
+    observer.schedule(event_handler, path="src", recursive=True)
     observer.start()
 
     try:
