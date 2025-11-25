@@ -1,9 +1,10 @@
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from process_files import process_files
-from logger import logger
+
 from config_handler import load_config, save_config
+from logger import logger
+from process_files import process_files
 
 
 def main():
@@ -73,7 +74,7 @@ def main():
         logger.error(f"Erro ao executar o aplicativo: {error}", exc_info=True)
         messagebox.showerror(
             "Erro",
-            f"Ocorreu um erro inesperado. Verifique o arquivo app.log para mais detalhes.",
+            "Ocorreu um erro inesperado. Verifique o arquivo app.log para mais detalhes.",
         )
 
 
