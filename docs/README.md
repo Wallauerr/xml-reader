@@ -60,10 +60,10 @@ python -m PyInstaller app.spec
 ```
 pip install .
 ```
-3. Execute o comando para visualizar o app em tempo real de desenvolvimento(acesse `src` para executar):
+3. Execute o comando para visualizar o app em tempo real de desenvolvimento:
 
 ```
-python dev.py
+python src\dev.py
 ```
 
 4. Crie uma nova branch com sua feature/correção:
