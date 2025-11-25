@@ -31,5 +31,5 @@ def process_files(input_paths, output_folder_entry):
 
     messagebox.showinfo(
         "Concluído",
-        "Processamento concluído. Os arquivos PDF foram criados com sucesso.",
+        "Processamento concluído. \nOs arquivos PDF foram criados com sucesso.",
     )
